@@ -1,32 +1,36 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  padding: 20px;
+  background-color: #f4f4f4;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin: 20px auto;
+.form-container, .fib-container {
+  max-width: 400px;
+  margin: 60px auto;
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  text-align: center;
 }
 
-input, button {
-  margin: 10px 0;
+input {
+  width: 90%;
   padding: 10px;
-  font-size: 1em;
+  margin: 10px 0;
+  font-size: 1rem;
 }
 
 button {
-  background-color: #007bff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: teal;
   color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.fib-result {
+  margin-top: 20px;
+  font-weight: bold;
 }

@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
-function Login({ onLogin }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function Login({ users, setCurrentUser }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser && storedUser.username === username && storedUser.password === password) {
-      onLogin();
-    } else {
-      alert("Invalid credentials");
-    }
+    const user = users.find(u => u.username === username && u.password === password);
+    if (!user) return alert("Invalid credentials");
+
+    setCurrentUser(user);
+    navigate('/fibonacci');
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <div className="form-container">
       <h2>Login</h2>
-      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} required />
-      <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} required />
-      <button type="submit">Login</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <button type="submit">Login</button>
+        <p>Don't have an account? <Link to="/register">Register</Link></p>
+      </form>
+    </div>
   );
 }
 
